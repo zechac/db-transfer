@@ -1,0 +1,10 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <mat-progress-bar [mode]="globlaProgress.status" ></mat-progress-bar>
+  <mat-toolbar color="primary">
+    <button mat-button routerLink="db/setting" routerLinkActive="mat-stroked-button">数据库配置</button>
+    <button mat-button routerLink="db/transfer" routerLinkActive="mat-stroked-button">迁移</button>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</div>
+

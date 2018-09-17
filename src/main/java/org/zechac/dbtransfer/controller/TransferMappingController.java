@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("transfer/mapping")
+@RequestMapping("api/db/transfer/mapping")
 public class TransferMappingController {
     @Autowired
     private TransferMappingService transferMappingService;

@@ -1,0 +1,57 @@
+<div>
+  <div>
+    从数据库
+    <mat-form-field>
+      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
+        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+          {{food.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    到数据库
+    <mat-form-field>
+      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
+        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+          {{food.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    从表
+    <mat-form-field>
+      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
+        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+          {{food.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    到表
+    <mat-form-field>
+      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
+        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+          {{food.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <button mat-icon-button (click)="addField()">add</button>
+  <ng-template *ngFor="let item of fields">
+    从字段
+    <mat-form-field>
+      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
+        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+          {{food.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    到字段
+    <mat-form-field>
+      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
+        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+          {{food.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </ng-template>
+</div>

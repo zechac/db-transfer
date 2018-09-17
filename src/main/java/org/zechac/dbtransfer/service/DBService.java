@@ -47,6 +47,8 @@ public class DBService {
         dbSettingRepo.deleteById(id);
     }
 
+    public DBSetting getById(int id){return dbSettingRepo.findById(id).get();}
+
     public Map tables(DBSetting dbSetting) {
         List<String> tables=new ArrayList<String>();
         try{

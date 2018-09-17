@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("db")
+@RequestMapping("api/db/setting")
 public class DBController {
 
     @Autowired
@@ -23,6 +23,12 @@ public class DBController {
     public Map save(@RequestBody DBSetting dbSetting){
         dbService.save(dbSetting);
         return ResponseData.Success();
+    }
+
+    @RequestMapping("get/{id}")
+    public Map save(@PathVariable int id){
+        DBSetting dbSetting= dbService.getById(id);
+        return ResponseData.Success().putData(dbSetting);
     }
 
     @RequestMapping("list")
