@@ -49,7 +49,7 @@ public class TransferMappingService {
             for(Map<String,String> map :source){
                 String sql="";
                for(Map.Entry<String,String> entry: map.entrySet()){
-                   sql2.replace("#"+entry.getKey(),entry.getValue());
+                   sql= sql2.replace("#"+entry.getKey(),entry.getValue());
                }
                connection2.createStatement().executeUpdate(sql);
             }
@@ -65,15 +65,16 @@ public class TransferMappingService {
 
     private String buildWriteSql(TransferMapping transferMapping, TransferData transferData) {
         StringBuilder stringBuilder=new StringBuilder();
-        stringBuilder.append("insert into (");
+        stringBuilder.append("insert into "+transferMapping.getToTable()+"(");
         for(TransferItem transferItem : transferData.getMappingFields()){
             stringBuilder.append(transferItem.getTo()+",");
         }
-        stringBuilder.delete(stringBuilder.length()-1,1);
+        stringBuilder.delete(stringBuilder.length()-1,stringBuilder.length());
         stringBuilder.append(") values( ");
         for(TransferItem transferItem : transferData.getMappingFields()){
-            stringBuilder.append("#"+transferItem.getFrom()+",");
+            stringBuilder.append("'#"+transferItem.getFrom()+"',");
         }
+        stringBuilder.delete(stringBuilder.length()-1,stringBuilder.length());
         stringBuilder.append(")");
         return stringBuilder.toString();
     }
@@ -84,7 +85,7 @@ public class TransferMappingService {
         for(TransferItem transferItem : transferData.getMappingFields()){
             stringBuilder.append(transferItem.getFrom()+",");
         }
-        stringBuilder.delete(stringBuilder.length()-1,1);
+        stringBuilder.delete(stringBuilder.length()-1,stringBuilder.length());
         stringBuilder.append(" from ");
         stringBuilder.append(transferMapping.getFromTable());
         return stringBuilder.toString();

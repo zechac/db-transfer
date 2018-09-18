@@ -2,16 +2,16 @@
   <div>
     从数据库
     <mat-form-field>
-      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
-        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+      <mat-select #db1c (selectionChange)="db1Change(db1c.value)" placeholder="数据库" name="db1" [(ngModel)]="dbTransfer.fromDB">
+        <mat-option *ngFor="let food of db1" [value]="food">
           {{food.name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     到数据库
     <mat-form-field>
-      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
-        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
+      <mat-select #db2c (selectionChange)="db2Change(db2c.value)" placeholder="数据库" name="db2" [(ngModel)]="dbTransfer.toDB">
+        <mat-option *ngFor="let food of db2" [value]="food">
           {{food.name}}
         </mat-option>
       </mat-select>
@@ -20,38 +20,31 @@
   <div>
     从表
     <mat-form-field>
-      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
-        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
-          {{food.name}}
+      <mat-select placeholder="表名称" name="t1" [(ngModel)]="dbTransfer.fromTable">
+        <mat-option *ngFor="let food of tab1" [value]="food">
+          {{food}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     到表
     <mat-form-field>
-      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
-        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
-          {{food.name}}
+      <mat-select placeholder="表名称" name="t2" [(ngModel)]="dbTransfer.toTable">
+        <mat-option *ngFor="let food of tab2" [value]="food">
+          {{food}}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <button mat-icon-button (click)="addField()">add</button>
-  <ng-template *ngFor="let item of fields">
+  <button mat-button (click)="addField()">add</button>
+  <button mat-button (click)="transfer()">转换</button>
+  <div *ngFor="let item of fieldData.mappingFields">
     从字段
     <mat-form-field>
-      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
-        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
-          {{food.name}}
-        </mat-option>
-      </mat-select>
+      <input matInput placeholder="字段1" name="field1" [(ngModel)]="item.from">
     </mat-form-field>
     到字段
     <mat-form-field>
-      <mat-select placeholder="数据库类型" name="dbType" [(ngModel)]="data.dbType">
-        <mat-option *ngFor="let food of dbTypes" [value]="food.value">
-          {{food.name}}
-        </mat-option>
-      </mat-select>
+      <input matInput placeholder="字段2" name="field2" [(ngModel)]="item.to">
     </mat-form-field>
-  </ng-template>
+  </div>
 </div>

@@ -30,4 +30,9 @@ export class DbSettingService {
   get(id:string){
     return this.httpService.get<ResponseData>("api/db/setting/get/"+id)
   }
+
+  loadTables(db:DbSetting):Observable<ResponseData>{
+    return this.httpService.post<ResponseData>("api/db/setting/tables",db)
+  }
+
 }

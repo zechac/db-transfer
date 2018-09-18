@@ -9,4 +9,6 @@ export class GlobalProgressService {
 
   //indeterminate
   status:string
+
+  INDETERMINATE="indeterminate"
 }

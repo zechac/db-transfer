@@ -12,15 +12,15 @@ public class DBUtils {
     @SuppressWarnings("unchecked")
     public static <T> List<T> resultSetToList(ResultSet resultSet,Class<T> clazz) throws SQLException {
         List<T> list=new ArrayList();
-        if(resultSet.next()){
+        while (resultSet.next()){
             if(String.class.isAssignableFrom(clazz)){
-                list.add((T)resultSet.getString(0));
+                list.add((T)resultSet.getString(1));
             }else if (Map.class.isAssignableFrom(clazz)){
                 Map map=new HashMap();
                int columnCount= resultSet.getMetaData().getColumnCount();
                for(int i=0;i<columnCount;i++){
-                   String label=resultSet.getMetaData().getColumnLabel(0);
-                   Object val=resultSet.getObject(i);
+                   String label=resultSet.getMetaData().getColumnLabel(i+1);
+                   Object val=resultSet.getObject(i+1);
                    map.put(label,val);
                    list.add((T)map);
                }

@@ -49,6 +49,11 @@ public class DBService {
 
     public DBSetting getById(int id){return dbSettingRepo.findById(id).get();}
 
+    public String getDbName(String connstr){
+        int x=connstr.lastIndexOf("DatabaseName=");
+        return connstr.substring(x+13,connstr.length());
+    }
+
     public Map tables(DBSetting dbSetting) {
         List<String> tables=new ArrayList<String>();
         try{
@@ -59,6 +64,8 @@ public class DBService {
                 case MYSQL:
                     break;
                 case SQLSERVER:
+                     String dbName=getDbName(dbSetting.getConnStr());
+                     connection.createStatement().execute("use "+dbName);
                      ResultSet resultSet= connection.createStatement().executeQuery("select name from sysobjects where xtype='u'");
                      tables= DBUtils.resultSetToList(resultSet,String.class);
                     break;
